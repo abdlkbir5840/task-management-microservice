@@ -1,0 +1,47 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    env_file:
+      - ./infrastructure/postgres/.env.postgres
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ./infrastructure/postgres/init:/docker-entrypoint-initdb.d
+    networks:
+      - task_management_network
+    restart: unless-stopped
+
+  rabbitmq:
+    image: rabbitmq:3.12-management-alpine
+    container_name: task-mgmt-rabbitmq
+    env_file:
+      - ./infrastructure/rabbitmq/.env.rabbitmq
+    ports:
+      - "${RABBITMQ_NODE_PORT}:5672"
+      - "${RABBITMQ_MANAGEMENT_PORT}:15672"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+      - ./infrastructure/rabbitmq/config/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:ro
+      - ./infrastructure/rabbitmq/config/definitions.json:/etc/rabbitmq/definitions.json:ro
+    networks:
+      - task_management_network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+volumes:
+  pg_data:
+    driver: local
+  rabbitmq_data:
+    driver: local
+
+networks:
+  task_management_network:
+    driver: bridge
+
+
