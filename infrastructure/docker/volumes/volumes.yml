@@ -1,0 +1,5 @@
+volumes:
+  pg_data:
+    driver: local
+  rabbitmq_data:
+    driver: local

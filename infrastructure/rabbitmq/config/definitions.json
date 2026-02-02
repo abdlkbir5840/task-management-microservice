@@ -1,0 +1,16 @@
+{
+  "users": [
+    {"name": "admin", "password": "admin", "tags": "administrator"}
+  ],
+  "vhosts": [{"name": "/"}],
+  "permissions": [
+    {"user": "admin", "vhost": "/", "configure": ".*", "write": ".*", "read": ".*"}
+  ],
+  "exchanges": [
+    {"name": "tasks.events", "vhost": "/", "type": "topic", "durable": true},
+    {"name": "auth.events", "vhost": "/", "type": "topic", "durable": true},
+    {"name": "user.events", "vhost": "/", "type": "topic", "durable": true},
+    {"name": "project.events", "vhost": "/", "type": "topic", "durable": true},
+    {"name": "dlx", "vhost": "/", "type": "topic", "durable": true}
+  ]
+}

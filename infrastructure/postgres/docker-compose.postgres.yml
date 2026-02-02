@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    env_file:
+      - .env.postgres
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ./init:/docker-entrypoint-initdb.d
+    networks:
+      - task_management_network
+    restart: unless-stopped
+
+volumes:
+  pg_data:
+    driver: local
+
+networks:
+  task_management_network:
+    driver: bridge
