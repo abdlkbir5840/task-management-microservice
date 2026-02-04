@@ -1,8 +1,8 @@
 # Auth Service - GitHub Issues
 
-**Epic:** Authentication Microservice  
-**Service:** auth-service  
-**Database:** auth_db  
+**Epic:** Authentication Microservice
+**Service:** auth-service
+**Database:** auth_db
 **Port:** 3001
 
 ---
@@ -10,6 +10,7 @@
 ## 📋 Issue Index
 
 ### Phase 1: Project Setup (Week 1)
+
 - [Issue #1: Initialize auth-service](#issue-1-initialize-auth-service)
 - [Issue #2: Add health endpoint](#issue-2-add-health-endpoint)
 - [Issue #3: Install Prisma and setup database](#issue-3-install-prisma-and-setup-database)
@@ -21,6 +22,7 @@
 - [Issue #9: Setup RabbitMQ client](#issue-9-setup-rabbitmq-client)
 
 ### Phase 2: Core Features (Week 1-2)
+
 - [Issue #10: Password hashing and validation](#issue-10-password-hashing-and-validation)
 - [Issue #11: Add input validation with DTOs](#issue-11-add-input-validation-with-dtos)
 - [Issue #12: Implement JWT token generation](#issue-12-implement-jwt-token-generation)
@@ -29,16 +31,19 @@
 - [Issue #15: Implement login endpoint](#issue-15-implement-login-endpoint)
 
 ### Phase 3: Session Management (Week 2)
+
 - [Issue #16: Implement token refresh endpoint](#issue-16-implement-token-refresh-endpoint)
 - [Issue #17: Implement logout endpoint](#issue-17-implement-logout-endpoint)
 - [Issue #18: Implement GET /auth/me endpoint](#issue-18-implement-get-authme-endpoint)
 
 ### Phase 4: Infrastructure (Week 2-3)
+
 - [Issue #19: Create Dockerfile](#issue-19-create-dockerfile)
 - [Issue #20: Add auth-service to docker-compose](#issue-20-add-auth-service-to-docker-compose)
 - [Issue #21: Add global exception filter](#issue-21-add-global-exception-filter)
 
 ### Phase 5: Quality & Testing (Week 3)
+
 - [Issue #22: Write unit tests](#issue-22-write-unit-tests)
 - [Issue #23: Write integration tests](#issue-23-write-integration-tests)
 - [Issue #24: Service documentation and README](#issue-24-service-documentation-and-readme)
@@ -74,10 +79,10 @@ npm install
 
 **Acceptance Criteria:**
 
-- [x] Service starts with `npm run start:dev`
-- [x] Service stops cleanly
-- [x] No errors in console
-- [x] No dependencies on other services yet
+- [X] Service starts with `npm run start:dev`
+- [X] Service stops cleanly
+- [X] No errors in console
+- [X] No dependencies on other services yet
 
 **Dependencies:** None
 
@@ -128,9 +133,9 @@ Response (200 OK):
 
 **Acceptance Criteria:**
 
-- [x] Endpoint accessible without authentication
-- [x] Returns 200 OK with JSON response
-- [x] Can be used by Docker health checks
+- [X] Endpoint accessible without authentication
+- [X] Returns 200 OK with JSON response
+- [X] Can be used by Docker health checks
 
 **Dependencies:** Issue #1
 
@@ -182,11 +187,12 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
 
 **Acceptance Criteria:**
 
-- [x] Prisma client can connect to PostgreSQL
-- [x] `.env` used for DB credentials
-- [x] Connection tested successfully
+- [X] Prisma client can connect to PostgreSQL
+- [X] `.env` used for DB credentials
+- [X] Connection tested successfully
 
-**Dependencies:** 
+**Dependencies:**
+
 - Issue #1
 - PostgreSQL `auth_db` created (infrastructure)
 
@@ -240,10 +246,10 @@ model Session {
 
 **Acceptance Criteria:**
 
-- [x] Schema matches specification above
-- [x] Email is unique
-- [x] Sessions have cascade delete
-- [x] Proper naming conventions used
+- [X] Schema matches specification above
+- [X] Email is unique
+- [X] Sessions have cascade delete
+- [X] Proper naming conventions used
 
 **Dependencies:** Issue #3
 
@@ -273,10 +279,10 @@ npx prisma generate
 
 **Acceptance Criteria:**
 
-- [x] Migration applied successfully
-- [x] Tables exist in `auth_db`
-- [x] Migration folder exists: `prisma/migrations/`
-- [x] Prisma Client generated
+- [X] Migration applied successfully
+- [X] Tables exist in `auth_db`
+- [X] Migration folder exists: `prisma/migrations/`
+- [X] Prisma Client generated
 
 **Dependencies:** Issue #4
 
@@ -310,10 +316,10 @@ docker exec postgres psql -U postgres -d auth_db -c '\d sessions'
 
 **Acceptance Criteria:**
 
-- [x] Account table has correct columns
-- [x] Session table has correct columns
-- [x] Data types match Prisma schema
-- [x] Constraints are applied
+- [X] Account table has correct columns
+- [X] Session table has correct columns
+- [X] Data types match Prisma schema
+- [X] Constraints are applied
 
 **Dependencies:** Issue #5
 
@@ -352,9 +358,9 @@ Create documentation for Prisma setup, schema, and migration commands.
 
 **Acceptance Criteria:**
 
-- [x] Documentation file created
-- [x] Anyone can run migrations using documented commands
-- [x] Schema explained clearly
+- [X] Documentation file created
+- [X] Anyone can run migrations using documented commands
+- [X] Schema explained clearly
 
 **Dependencies:** Issue #5
 
@@ -410,9 +416,9 @@ ConfigModule.forRoot({
 
 **Acceptance Criteria:**
 
-- [x] No hardcoded secrets in code
-- [x] Works in both local and Docker environments
-- [x] Config validation fails fast on missing variables
+- [X] No hardcoded secrets in code
+- [X] Works in both local and Docker environments
+- [X] Config validation fails fast on missing variables
 
 **Dependencies:** Issue #1
 
@@ -468,11 +474,12 @@ export class EventEmitterService {
 
 **Acceptance Criteria:**
 
-- [x] Successfully connects to RabbitMQ
-- [x] Can publish events to `auth.events` exchange
-- [x] Connection handles failures gracefully
+- [X] Successfully connects to RabbitMQ
+- [X] Can publish events to `auth.events` exchange
+- [X] Connection handles failures gracefully
 
-**Dependencies:** 
+**Dependencies:**
+
 - Issue #8
 - RabbitMQ running (infrastructure)
 
@@ -513,9 +520,9 @@ export class PasswordService {
 
 **Acceptance Criteria:**
 
-- [x] Uses bcrypt with salt rounds = 10
-- [x] No plain text passwords in DB or logs
-- [x] Password comparison works correctly
+- [X] Uses bcrypt with salt rounds = 10
+- [X] No plain text passwords in DB or logs
+- [X] Password comparison works correctly
 
 **Dependencies:** Issue #3
 
@@ -583,10 +590,10 @@ app.useGlobalPipes(new ValidationPipe({
 
 **Acceptance Criteria:**
 
-- [x] ValidationPipe enabled globally
-- [x] Returns 400 with clear error messages
-- [x] Email format validated
-- [x] Password requirements enforced
+- [X] ValidationPipe enabled globally
+- [X] Returns 400 with clear error messages
+- [X] Email format validated
+- [X] Password requirements enforced
 
 **Dependencies:** Issue #1
 
@@ -641,10 +648,10 @@ export class TokenService {
 
 **Acceptance Criteria:**
 
-- [x] JWT contains accountId and email
-- [x] Token expiration set from env variable
-- [x] Token can be decoded externally
-- [x] Refresh tokens are UUIDs
+- [X] JWT contains accountId and email
+- [X] Token expiration set from env variable
+- [X] Token can be decoded externally
+- [X] Refresh tokens are UUIDs
 
 **Dependencies:** Issue #8
 
@@ -699,10 +706,10 @@ async getMe(@Request() req) {
 
 **Acceptance Criteria:**
 
-- [x] JwtStrategy validates token signature
-- [x] Protected endpoints return 401 without valid JWT
-- [x] User data extracted from JWT payload
-- [x] Guard can be used with `@UseGuards()`
+- [X] JwtStrategy validates token signature
+- [X] Protected endpoints return 401 without valid JWT
+- [X] User data extracted from JWT payload
+- [X] Guard can be used with `@UseGuards()`
 
 **Dependencies:** Issue #12
 
@@ -822,12 +829,12 @@ Error (409 Conflict):
 
 **Acceptance Criteria:**
 
-- [x] Email uniqueness enforced
-- [x] Password hashed before storing
-- [x] JWT and refresh token generated
-- [x] Session created in database
-- [x] Event published to RabbitMQ
-- [x] Returns appropriate error for duplicates
+- [X] Email uniqueness enforced
+- [X] Password hashed before storing
+- [X] JWT and refresh token generated
+- [X] Session created in database
+- [X] Event published to RabbitMQ
+- [X] Returns appropriate error for duplicates
 
 **Dependencies:** Issues #4, #9, #10, #11, #12
 
@@ -936,11 +943,11 @@ Error (403 Forbidden):
 
 **Acceptance Criteria:**
 
-- [x] Validates email and password
-- [x] Password verified using bcrypt
-- [x] Returns 401 for invalid credentials
-- [x] Returns 403 for inactive accounts
-- [x] Session created on successful login
+- [X] Validates email and password
+- [X] Password verified using bcrypt
+- [X] Returns 401 for invalid credentials
+- [X] Returns 403 for inactive accounts
+- [X] Session created on successful login
 
 **Dependencies:** Issues #10, #11, #12
 
@@ -1029,11 +1036,11 @@ Error (401 Unauthorized):
 
 **Acceptance Criteria:**
 
-- [x] Validates refresh token exists
-- [x] Checks token expiration
-- [x] Generates new access token
-- [x] Optionally rotates refresh token
-- [x] Returns 401 for invalid tokens
+- [X] Validates refresh token exists
+- [X] Checks token expiration
+- [X] Generates new access token
+- [X] Optionally rotates refresh token
+- [X] Returns 401 for invalid tokens
 
 **Dependencies:** Issues #12, #15
 
@@ -1101,10 +1108,10 @@ Response (200 OK):
 
 **Acceptance Criteria:**
 
-- [x] Deletes session from database
-- [x] Returns success message
-- [x] Logout-all endpoint requires JWT
-- [x] Logout-all deletes all user sessions
+- [X] Deletes session from database
+- [X] Returns success message
+- [X] Logout-all endpoint requires JWT
+- [X] Logout-all deletes all user sessions
 
 **Dependencies:** Issues #13, #15
 
@@ -1169,10 +1176,10 @@ Error (401 Unauthorized):
 
 **Acceptance Criteria:**
 
-- [x] Requires valid JWT token
-- [x] Returns user information
-- [x] Does not include password
-- [x] Returns 401 without token
+- [X] Requires valid JWT token
+- [X] Returns user information
+- [X] Does not include password
+- [X] Returns 401 without token
 
 **Dependencies:** Issue #13
 
@@ -1244,10 +1251,10 @@ coverage
 
 **Acceptance Criteria:**
 
-- [x] Multi-stage build for smaller image
-- [x] Runs Prisma migrations on startup
-- [x] Exposes port 3001
-- [x] .dockerignore excludes unnecessary files
+- [X] Multi-stage build for smaller image
+- [X] Runs Prisma migrations on startup
+- [X] Exposes port 3001
+- [X] .dockerignore excludes unnecessary files
 
 **Dependencies:** All previous issues
 
@@ -1295,10 +1302,10 @@ auth-service:
 
 **Acceptance Criteria:**
 
-- [x] Service starts with docker-compose up
-- [x] Waits for postgres and rabbitmq to be healthy
-- [x] Health check configured
-- [x] Accessible on port 3001
+- [X] Service starts with docker-compose up
+- [X] Waits for postgres and rabbitmq to be healthy
+- [X] Health check configured
+- [X] Accessible on port 3001
 
 **Dependencies:** Issue #19
 
@@ -1361,10 +1368,10 @@ app.useGlobalFilters(new AllExceptionsFilter());
 
 **Acceptance Criteria:**
 
-- [x] Catches all exceptions
-- [x] Returns standardized error format
-- [x] Logs errors appropriately
-- [x] Handles validation errors
+- [X] Catches all exceptions
+- [X] Returns standardized error format
+- [X] Logs errors appropriately
+- [X] Handles validation errors
 
 **Dependencies:** Issue #1
 
@@ -1414,10 +1421,10 @@ npm run test:cov
 
 **Acceptance Criteria:**
 
-- [x] Unit tests for all services
-- [x] Mock database connections
-- [x] Mock RabbitMQ connections
-- [x] Test coverage > 80%
+- [X] Unit tests for all services
+- [X] Mock database connections
+- [X] Mock RabbitMQ connections
+- [X] Test coverage > 80%
 
 **Dependencies:** All feature issues
 
@@ -1464,9 +1471,9 @@ npm run test:e2e
 
 **Acceptance Criteria:**
 
-- [x] E2E tests for all endpoints
-- [x] Test database setup/teardown
-- [x] All tests pass
+- [X] E2E tests for all endpoints
+- [X] Test database setup/teardown
+- [X] All tests pass
 
 **Dependencies:** All feature issues
 
@@ -1520,10 +1527,10 @@ Authentication microservice for task management platform.
 
 **Acceptance Criteria:**
 
-- [x] Complete README created
-- [x] All endpoints documented
-- [x] Setup instructions clear
-- [x] Any developer can run service
+- [X] Complete README created
+- [X] All endpoints documented
+- [X] Setup instructions clear
+- [X] Any developer can run service
 
 **Dependencies:** All issues
 
@@ -1531,17 +1538,19 @@ Authentication microservice for task management platform.
 
 ## 📊 Issue Summary
 
-**Total Issues:** 24  
-**High Priority:** 12  
-**Medium Priority:** 8  
+**Total Issues:** 24
+**High Priority:** 12
+**Medium Priority:** 8
 **Low Priority:** 4
 
 **Estimated Timeline:**
+
 - **Week 1:** Issues #1-9 (Setup + Infrastructure)
 - **Week 2:** Issues #10-18 (Core Features + Session Management)
 - **Week 3:** Issues #19-24 (Docker + Testing + Docs)
 
 **Build Order:**
+
 1. Setup (Issues #1-9)
 2. Core Auth (Issues #10-15)
 3. Sessions (Issues #16-18)
