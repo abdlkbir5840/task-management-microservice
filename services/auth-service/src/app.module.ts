@@ -6,6 +6,7 @@ import { HealthController } from './health/health.controller';
 import { PrismaModule } from './prisma/prisma.module';
 import { PasswordService } from './security/password.service';
 import { JwtService } from './security/jwt.service';
+import { RabbitMQService } from './messaging/abbitmq.service';
 
 @Module({
   imports: [
@@ -15,7 +16,7 @@ import { JwtService } from './security/jwt.service';
     PrismaModule
   ],
   controllers: [AppController, HealthController],
-  providers: [AppService, PasswordService, JwtService],
-  exports: [PasswordService, JwtService]
+  providers: [AppService, PasswordService, JwtService, RabbitMQService],
+  exports: [PasswordService, JwtService, RabbitMQService]
 })
 export class AppModule {}
