@@ -6,7 +6,7 @@ import { Observable } from "rxjs";
 export class JwtAuthGuard implements CanActivate {
     constructor(private readonly jwtService: JwtService){}
 
-    canActivate(context: ExecutionContext): boolean | Promise<boolean> {
+    canActivate(context: ExecutionContext): boolean {
        const request = context.switchToHttp().getRequest();
        const authHeader = request.headers['authorization'];
 
@@ -15,7 +15,7 @@ export class JwtAuthGuard implements CanActivate {
        }
 
        const [type, token] = authHeader.split(' ');
-       if(type !== 'Beare' || !token){
+       if(type !== 'Bearer' || !token){
         throw new UnauthorizedException("Invalid authorization format")
        }
 

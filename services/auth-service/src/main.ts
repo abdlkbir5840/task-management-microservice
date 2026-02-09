@@ -17,9 +17,5 @@ async function bootstrap() {
   )
   await app.listen(port);
   Logger.log(`Auth Service running on port ${port}`);
-  // AFTER app initialization
-const rabbit = app.get(RabbitMQService);
-
-await rabbit.emit('auth.test', { ok: true });
 }
 bootstrap();
