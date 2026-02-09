@@ -1,4 +1,19 @@
 services:
+  auth-service:
+    container_name: auth-service
+    build:
+      context: ./services/auth-service
+      dockerfile: Dockerfile
+    env_file:
+      - ./services/auth-service/.env
+    depends_on:
+      - postgres
+      - rabbitmq
+    ports:
+      - "3001:3001"
+    restart: unless-stopped
+    networks:
+      - task_management_network
   postgres:
     image: postgres:15
     container_name: postgres
